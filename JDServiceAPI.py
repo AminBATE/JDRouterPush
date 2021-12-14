@@ -151,5 +151,37 @@ def getControlDevice(mac,i):
         print("Find mac failure!")
 
 
+#设置积分模式
+def setCreditMode(mac,arge):
+    feed_id = GlobalVariable.device_list[mac]["feed_id"]
+    url = GlobalVariable.jd_service_url + "controlDevice"
+    service_body_temp = '{"feed_id":"%s","command":[{"current_value":{"args":"%s","cmd":"set_credit_mode"},"stream_id":"SetParams"}]}'
+    #body = GlobalVariable.service_body%(feed_id,GlobalVariable.cmds[i])
+    body = service_body_temp%(feed_id,arge)
+    GlobalVariable.service_headers["Authorization"] = str(getAuthorization(body,GlobalVariable.accessKey))
+    res = requests.post(url, params=GlobalVariable.service_pram, headers=GlobalVariable.service_headers, data=body)
+    control_device = {}
+    if res.status_code == 200 and res.json()["result"] is not None:
+        res = res.json()
+        result = json.loads(res["result"])
+
+        print(result)
+        
+    else:
+        if res.json()["error"] is not None:
+            error = res.json()["error"]
+            errorCode = error['errorCode']
+            errorInfo = error['errorInfo']
+            print("错误代码:%s,错误信息:%s"%(errorCode,errorInfo))
+        control_device.update({"ControlDevice": False})
+        print("Request getControlDevice failed!")
+        
+    index = GlobalVariable.findALocation(mac)
+    if index != -1:
+        point_info = GlobalVariable.final_result["pointInfos"][index]
+        point_info.update(control_device)
+    else:
+        print("Find mac failure!")
+
 
 
