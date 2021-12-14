@@ -99,6 +99,8 @@ def routerActivityInfo(mac):
 
 # 收益信息
 def todayPointDetail():
+    #修改积分模式
+    JDServiceAPI.setCreditMode("DCD87C2134BF", {"maxValus":"8","mode":"2"})
     params = {
         "sortField": "today_point",
         "sortDirection": "DESC",
@@ -128,8 +130,6 @@ def todayPointDetail():
         for mac in MACS:
             JDServiceAPI.getControlDevice(mac, 2)
             JDServiceAPI.getControlDevice(mac, 3)
-            #修改积分模式
-            JDServiceAPI.setCreditMode(mac, {"maxValus":"8","mode":"2"})
     else:
         errorMessage = res.json()['error']['message']
         print(errorMessage)
