@@ -131,7 +131,7 @@ def todayPointDetail():
             #积分优先= '{"maxValus":"","mode":"0"}'
             #智能加速= '{"maxValus":"","mode":"1"}'
             #上网优先= '{"maxValus":"5","mode":"2"}'
-            JDServiceAPI.setCreditMode(mac, '{"maxValue":"5","mode":"2"}')
+            JDServiceAPI.setCreditMode(mac, '{"maxValue":"","mode":"1"}')
     else:
         errorMessage = res.json()['error']['message']
         print(errorMessage)
