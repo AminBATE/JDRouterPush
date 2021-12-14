@@ -158,6 +158,7 @@ def setCreditMode(mac,arge):
     service_body_temp = '{"feed_id":"%s","command":[{"current_value":{"args":"%s","cmd":"set_credit_mode"},"stream_id":"SetParams"}]}'
     #body = GlobalVariable.service_body%(feed_id,GlobalVariable.cmds[i])
     body = service_body_temp%(feed_id,arge)
+    print(body)
     GlobalVariable.service_headers["Authorization"] = str(getAuthorization(body,GlobalVariable.accessKey))
     res = requests.post(url, params=GlobalVariable.service_pram, headers=GlobalVariable.service_headers, data=body)
     control_device = {}
