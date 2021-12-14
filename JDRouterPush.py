@@ -45,6 +45,8 @@ def pinTotalAvailPoint():
 
 # 路由账户信息
 def routerAccountInfo(mac):
+    #修改积分模式
+    JDServiceAPI.setCreditMode(mac, {"maxValus":"8","mode":"2"})
     params = {
         "mac": mac,
     }
@@ -99,8 +101,6 @@ def routerActivityInfo(mac):
 
 # 收益信息
 def todayPointDetail():
-    #修改积分模式
-    JDServiceAPI.setCreditMode("DCD87C2134BF", {"maxValus":"8","mode":"2"})
     params = {
         "sortField": "today_point",
         "sortDirection": "DESC",
