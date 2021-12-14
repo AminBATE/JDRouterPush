@@ -155,7 +155,7 @@ def getControlDevice(mac,i):
 def setCreditMode(mac,arge):
     feed_id = GlobalVariable.device_list[mac]["feed_id"]
     url = GlobalVariable.jd_service_url + "controlDevice"
-    service_body_temp = '{"feed_id":"%s","command":[{"current_value":{"args":"%s","cmd":"set_credit_mode"},"stream_id":"SetParams"}]}'
+    service_body_temp = '{"feed_id":"%s","command":[{"current_value":{"args":%s,"cmd":"set_credit_mode"},"stream_id":"SetParams"}]}'
     #body = GlobalVariable.service_body%(feed_id,GlobalVariable.cmds[i])
     body = service_body_temp%(feed_id,arge)
     print(mac)
