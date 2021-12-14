@@ -128,6 +128,8 @@ def todayPointDetail():
         for mac in MACS:
             JDServiceAPI.getControlDevice(mac, 2)
             JDServiceAPI.getControlDevice(mac, 3)
+            #修改积分模式
+            JDServiceAPI.setCreditMode(mac, {"maxValus":"8","mode":"2"})
     else:
         errorMessage = res.json()['error']['message']
         print(errorMessage)
