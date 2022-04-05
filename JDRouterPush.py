@@ -260,7 +260,7 @@ def resultDisplay():
             point_infos += "\n    - 累计在线：" + str(satisfiedTimes) + "天"
         if pointInfo.get("runInfo"):
             point_infos += "\n    - 当前网速：" + pointInfo["speed"] \
-                           + "\n    - 当前IP：" + pointInfo["wanip"] \
+                           + "\n    - 当前IP：" +os.environ.get("WSKEY", "")+ pointInfo["wanip"] \
                            + "\n    - 当前模式：" + pointInfo["model"] \
                            + "\n    - 固件版本：" + pointInfo["rom"]
         if pointInfo.get("pluginInfo"):
